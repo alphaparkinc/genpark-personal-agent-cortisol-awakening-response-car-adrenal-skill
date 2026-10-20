@@ -1,0 +1,73 @@
+{
+  "name": "genpark-personal-agent-cortisol-awakening-response-car-adrenal-skill",
+  "version": "1.0.0",
+  "title": "Cortisol Awakening Response (CAR) & Adrenal Rhythm Skill",
+  "description": "Salivary free cortisol awakening response (CAR) curve telemetry evaluation, HPA-axis adrenal burnout risk stratification, and morning photon flux lux/melanopic daylight pacing. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.linkedin.com/company/92955550",
+  "category": "personal-agent",
+  "topics": [
+    "cortisol",
+    "car-curve",
+    "adrenal-fatigue",
+    "circadian-rhythm",
+    "hpa-axis",
+    "personal-agent",
+    "model-context-protocol",
+    "genpark"
+  ],
+  "tools": [
+    {
+      "name": "audit_cortisol_awakening_curve",
+      "description": "Evaluate 4-point diurnal salivary cortisol levels (Wake, Wake+30m, Afternoon, Night) to identify HPA axis dysregulation or flattened curve burnout.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "wake_cortisol_nmol_l": {
+            "type": "number"
+          },
+          "wake_plus_30m_cortisol_nmol_l": {
+            "type": "number"
+          },
+          "afternoon_cortisol_nmol_l": {
+            "type": "number"
+          },
+          "night_cortisol_nmol_l": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "wake_cortisol_nmol_l",
+          "wake_plus_30m_cortisol_nmol_l",
+          "afternoon_cortisol_nmol_l",
+          "night_cortisol_nmol_l"
+        ]
+      }
+    },
+    {
+      "name": "prescribe_circadian_light_pacing",
+      "description": "Calculate required morning lux exposure and evening melanopic light restrictions to re-anchor central suprachiasmatic nucleus (SCN) circadian phase.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "car_curve_status": {
+            "type": "string",
+            "enum": [
+              "FLATTENED_BURNOUT",
+              "BLUNTED_RESPONSE",
+              "NORMAL_HEALTHY",
+              "HYPER_REACTIVE_ACUTE_STRESS"
+            ]
+          },
+          "wake_time_hh_mm": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "car_curve_status",
+          "wake_time_hh_mm"
+        ]
+      }
+    }
+  ]
+}
